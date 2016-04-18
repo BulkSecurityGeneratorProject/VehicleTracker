@@ -52,8 +52,8 @@ public class LocationResourceIntTest {
     private static final Double DEFAULT_LONGITUDE = 1D;
     private static final Double UPDATED_LONGITUDE = 2D;
 
-    private static final Double DEFAULT_LATTITUDE = 1D;
-    private static final Double UPDATED_LATTITUDE = 2D;
+    private static final Double DEFAULT_LATITUDE = 1D;
+    private static final Double UPDATED_LATITUDE = 2D;
 
     private static final ZonedDateTime DEFAULT_TIME = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneId.systemDefault());
     private static final ZonedDateTime UPDATED_TIME = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
@@ -88,7 +88,7 @@ public class LocationResourceIntTest {
         location = new Location();
         location.setDeviceId(DEFAULT_DEVICE_ID);
         location.setLongitude(DEFAULT_LONGITUDE);
-        location.setLattitude(DEFAULT_LATTITUDE);
+        location.setLatitude(DEFAULT_LATITUDE);
         location.setTime(DEFAULT_TIME);
     }
 
@@ -109,7 +109,7 @@ public class LocationResourceIntTest {
         Location testLocation = locations.get(locations.size() - 1);
         assertThat(testLocation.getDeviceId()).isEqualTo(DEFAULT_DEVICE_ID);
         assertThat(testLocation.getLongitude()).isEqualTo(DEFAULT_LONGITUDE);
-        assertThat(testLocation.getLattitude()).isEqualTo(DEFAULT_LATTITUDE);
+        assertThat(testLocation.getLatitude()).isEqualTo(DEFAULT_LATITUDE);
         assertThat(testLocation.getTime()).isEqualTo(DEFAULT_TIME);
     }
 
@@ -148,10 +148,10 @@ public class LocationResourceIntTest {
     }
 
     @Test
-    public void checkLattitudeIsRequired() throws Exception {
+    public void checkLatitudeIsRequired() throws Exception {
         int databaseSizeBeforeTest = locationRepository.findAll().size();
         // set the field null
-        location.setLattitude(null);
+        location.setLatitude(null);
 
         // Create the Location, which fails.
 
@@ -193,7 +193,7 @@ public class LocationResourceIntTest {
                 .andExpect(jsonPath("$.[*].id").value(hasItem(location.getId())))
                 .andExpect(jsonPath("$.[*].deviceId").value(hasItem(DEFAULT_DEVICE_ID.toString())))
                 .andExpect(jsonPath("$.[*].longitude").value(hasItem(DEFAULT_LONGITUDE.doubleValue())))
-                .andExpect(jsonPath("$.[*].lattitude").value(hasItem(DEFAULT_LATTITUDE.doubleValue())))
+                .andExpect(jsonPath("$.[*].latitude").value(hasItem(DEFAULT_LATITUDE.doubleValue())))
                 .andExpect(jsonPath("$.[*].time").value(hasItem(DEFAULT_TIME_STR)));
     }
 
@@ -209,7 +209,7 @@ public class LocationResourceIntTest {
             .andExpect(jsonPath("$.id").value(location.getId()))
             .andExpect(jsonPath("$.deviceId").value(DEFAULT_DEVICE_ID.toString()))
             .andExpect(jsonPath("$.longitude").value(DEFAULT_LONGITUDE.doubleValue()))
-            .andExpect(jsonPath("$.lattitude").value(DEFAULT_LATTITUDE.doubleValue()))
+            .andExpect(jsonPath("$.latitude").value(DEFAULT_LATITUDE.doubleValue()))
             .andExpect(jsonPath("$.time").value(DEFAULT_TIME_STR));
     }
 
@@ -231,7 +231,7 @@ public class LocationResourceIntTest {
         updatedLocation.setId(location.getId());
         updatedLocation.setDeviceId(UPDATED_DEVICE_ID);
         updatedLocation.setLongitude(UPDATED_LONGITUDE);
-        updatedLocation.setLattitude(UPDATED_LATTITUDE);
+        updatedLocation.setLatitude(UPDATED_LATITUDE);
         updatedLocation.setTime(UPDATED_TIME);
 
         restLocationMockMvc.perform(put("/api/locations")
@@ -245,7 +245,7 @@ public class LocationResourceIntTest {
         Location testLocation = locations.get(locations.size() - 1);
         assertThat(testLocation.getDeviceId()).isEqualTo(UPDATED_DEVICE_ID);
         assertThat(testLocation.getLongitude()).isEqualTo(UPDATED_LONGITUDE);
-        assertThat(testLocation.getLattitude()).isEqualTo(UPDATED_LATTITUDE);
+        assertThat(testLocation.getLatitude()).isEqualTo(UPDATED_LATITUDE);
         assertThat(testLocation.getTime()).isEqualTo(UPDATED_TIME);
     }
 

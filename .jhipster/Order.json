@@ -9,29 +9,44 @@
             ]
         },
         {
-            "fieldName": "longitude",
+            "fieldName": "orderNr",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "fromLatitude",
             "fieldType": "Double",
             "fieldValidateRules": [
                 "required"
             ]
         },
         {
-            "fieldName": "latitude",
+            "fieldName": "fromLongitude",
             "fieldType": "Double",
             "fieldValidateRules": [
                 "required"
             ]
         },
         {
-            "fieldName": "time",
-            "fieldType": "ZonedDateTime",
+            "fieldName": "toLongitude",
+            "fieldType": "Double",
             "fieldValidateRules": [
                 "required"
             ]
+        },
+        {
+            "fieldName": "toLatitude",
+            "fieldType": "Double",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "deadline",
+            "fieldType": "ZonedDateTime"
         }
     ],
     "dto": "no",
     "service": "no",
-    "entityTableName": "location",
+    "entityTableName": "order",
     "pagination": "pagination"
 }

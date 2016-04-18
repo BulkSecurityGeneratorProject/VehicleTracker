@@ -42,17 +42,17 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label" translate="vehicleTrackerApp.location.lattitude" for="field_lattitude">Lattitude</label>
-            <input type="number" class="form-control" name="lattitude" id="field_lattitude"
-                    ng-model="vm.location.lattitude"
+            <label class="control-label" translate="vehicleTrackerApp.location.latitude" for="field_latitude">Latitude</label>
+            <input type="number" class="form-control" name="latitude" id="field_latitude"
+                    ng-model="vm.location.latitude"
                     required />
-            <div ng-show="editForm.lattitude.$invalid">
+            <div ng-show="editForm.latitude.$invalid">
                 <p class="help-block"
-                    ng-show="editForm.lattitude.$error.required" translate="entity.validation.required">
+                    ng-show="editForm.latitude.$error.required" translate="entity.validation.required">
                     This field is required.
                 </p>
                 <p class="help-block"
-                    ng-show="editForm.lattitude.$error.number" translate="entity.validation.number">
+                    ng-show="editForm.latitude.$error.number" translate="entity.validation.number">
                     This field should be a number.
                 </p>
             </div>

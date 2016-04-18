@@ -30,8 +30,8 @@ public class Location implements Serializable {
     private Double longitude;
 
     @NotNull
-    @Field("lattitude")
-    private Double lattitude;
+    @Field("latitude")
+    private Double latitude;
 
     @NotNull
     @Field("time")
@@ -61,12 +61,12 @@ public class Location implements Serializable {
         this.longitude = longitude;
     }
 
-    public Double getLattitude() {
-        return lattitude;
+    public Double getLatitude() {
+        return latitude;
     }
 
-    public void setLattitude(Double lattitude) {
-        this.lattitude = lattitude;
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
     }
 
     public ZonedDateTime getTime() {
@@ -103,7 +103,7 @@ public class Location implements Serializable {
             "id=" + id +
             ", deviceId='" + deviceId + "'" +
             ", longitude='" + longitude + "'" +
-            ", lattitude='" + lattitude + "'" +
+            ", latitude='" + latitude + "'" +
             ", time='" + time + "'" +
             '}';
     }

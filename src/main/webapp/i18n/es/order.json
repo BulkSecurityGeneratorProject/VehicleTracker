@@ -1,0 +1,28 @@
+{
+    "vehicleTrackerApp": {
+        "order" : {
+            "home": {
+                "title": "Orders",
+                "createLabel": "Crear nuevo Order",
+                "createOrEditLabel": "Crear o editar Order",
+                "search": "Search for Order"
+            },
+            "created": "Un nuevo Order ha sido creado con el identificador {{ param }}",
+            "updated": "Un Order ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Order ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Order {{ id }}?"
+            },
+            "detail": {
+                "title": "Order"
+            },
+            "deviceId": "DeviceId",
+            "orderNr": "OrderNr",
+            "fromLatitude": "FromLatitude",
+            "fromLongitude": "FromLongitude",
+            "toLongitude": "ToLongitude",
+            "toLatitude": "ToLatitude",
+            "deadline": "Deadline"
+        }
+    }
+}

@@ -9,17 +9,17 @@
 
     function stateConfig($stateProvider) {
         $stateProvider
-        .state('location', {
+        .state('order', {
             parent: 'entity',
-            url: '/location?page&sort&search',
+            url: '/order?page&sort&search',
             data: {
                 authorities: ['ROLE_USER'],
-                pageTitle: 'vehicleTrackerApp.location.home.title'
+                pageTitle: 'vehicleTrackerApp.order.home.title'
             },
             views: {
                 'content@': {
-                    templateUrl: 'app/entities/location/locations.html',
-                    controller: 'LocationController',
+                    templateUrl: 'app/entities/order/orders.html',
+                    controller: 'OrderController',
                     controllerAs: 'vm'
                 }
             },
@@ -45,46 +45,46 @@
                     };
                 }],
                 translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
-                    $translatePartialLoader.addPart('location');
+                    $translatePartialLoader.addPart('order');
                     $translatePartialLoader.addPart('global');
                     return $translate.refresh();
                 }]
             }
         })
-        .state('location-detail', {
+        .state('order-detail', {
             parent: 'entity',
-            url: '/location/{id}',
+            url: '/order/{id}',
             data: {
                 authorities: ['ROLE_USER'],
-                pageTitle: 'vehicleTrackerApp.location.detail.title'
+                pageTitle: 'vehicleTrackerApp.order.detail.title'
             },
             views: {
                 'content@': {
-                    templateUrl: 'app/entities/location/location-detail.html',
-                    controller: 'LocationDetailController',
+                    templateUrl: 'app/entities/order/order-detail.html',
+                    controller: 'OrderDetailController',
                     controllerAs: 'vm'
                 }
             },
             resolve: {
                 translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
-                    $translatePartialLoader.addPart('location');
+                    $translatePartialLoader.addPart('order');
                     return $translate.refresh();
                 }],
-                entity: ['$stateParams', 'Location', function($stateParams, Location) {
-                    return Location.get({id : $stateParams.id});
+                entity: ['$stateParams', 'Order', function($stateParams, Order) {
+                    return Order.get({id : $stateParams.id});
                 }]
             }
         })
-        .state('location.new', {
-            parent: 'location',
+        .state('order.new', {
+            parent: 'order',
             url: '/new',
             data: {
                 authorities: ['ROLE_USER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/location/location-dialog.html',
-                    controller: 'LocationDialogController',
+                    templateUrl: 'app/entities/order/order-dialog.html',
+                    controller: 'OrderDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',
                     size: 'lg',
@@ -92,64 +92,67 @@
                         entity: function () {
                             return {
                                 deviceId: null,
-                                longitude: null,
-                                latitude: null,
-                                time: null,
+                                orderNr: null,
+                                fromLatitude: null,
+                                fromLongitude: null,
+                                toLongitude: null,
+                                toLatitude: null,
+                                deadline: null,
                                 id: null
                             };
                         }
                     }
                 }).result.then(function() {
-                    $state.go('location', null, { reload: true });
+                    $state.go('order', null, { reload: true });
                 }, function() {
-                    $state.go('location');
+                    $state.go('order');
                 });
             }]
         })
-        .state('location.edit', {
-            parent: 'location',
+        .state('order.edit', {
+            parent: 'order',
             url: '/{id}/edit',
             data: {
                 authorities: ['ROLE_USER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/location/location-dialog.html',
-                    controller: 'LocationDialogController',
+                    templateUrl: 'app/entities/order/order-dialog.html',
+                    controller: 'OrderDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',
                     size: 'lg',
                     resolve: {
-                        entity: ['Location', function(Location) {
-                            return Location.get({id : $stateParams.id});
+                        entity: ['Order', function(Order) {
+                            return Order.get({id : $stateParams.id});
                         }]
                     }
                 }).result.then(function() {
-                    $state.go('location', null, { reload: true });
+                    $state.go('order', null, { reload: true });
                 }, function() {
                     $state.go('^');
                 });
             }]
         })
-        .state('location.delete', {
-            parent: 'location',
+        .state('order.delete', {
+            parent: 'order',
             url: '/{id}/delete',
             data: {
                 authorities: ['ROLE_USER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/location/location-delete-dialog.html',
-                    controller: 'LocationDeleteController',
+                    templateUrl: 'app/entities/order/order-delete-dialog.html',
+                    controller: 'OrderDeleteController',
                     controllerAs: 'vm',
                     size: 'md',
                     resolve: {
-                        entity: ['Location', function(Location) {
-                            return Location.get({id : $stateParams.id});
+                        entity: ['Order', function(Order) {
+                            return Order.get({id : $stateParams.id});
                         }]
                     }
                 }).result.then(function() {
-                    $state.go('location', null, { reload: true });
+                    $state.go('order', null, { reload: true });
                 }, function() {
                     $state.go('^');
                 });
