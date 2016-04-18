@@ -1,0 +1,16 @@
+version: '2'
+services:
+    vehicletracker-app:
+        image: vehicletracker
+        external_links:
+            - vehicletracker-mongodb:mongodb
+        environment:
+            - SPRING_PROFILES_ACTIVE=prod
+            - SPRING_DATA_MONGODB_URI=mongodb://mongodb:27017
+            - SPRING_DATA_MONGODB_DATABASE=VehicleTracker
+        ports:
+            - 8080:8080
+    vehicletracker-mongodb:
+        extends:
+            file: mongodb.yml
+            service: vehicletracker-mongodb
