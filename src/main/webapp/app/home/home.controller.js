@@ -5,9 +5,9 @@
         .module('vehicleTrackerApp')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['$scope', 'Principal', 'LoginService'];
+    HomeController.$inject = ['$scope', 'Principal', 'LoginService', 'Stammdaten', 'AlertService'];
 
-    function HomeController ($scope, Principal, LoginService) {
+    function HomeController ($scope, Principal, LoginService, Stammdaten, AlertService) {
         var vm = this;
         vm.map = null;
         vm.account = null;
@@ -49,5 +49,22 @@
         }
 
         //setMarker(vm.map, new google.maps.LatLng(51.508515, -0.125487), 'London', 'Just some content');
+
+
+        //-----STAMMDATEN -----//
+
+        function loadStammdaten() {
+            Stammdaten.query({}, onSuccess, onError);
+            function onSuccess(data) {
+                vm.stammdaten = data;
+
+            }
+            function onError(error) {
+                AlertService.error(error.data.message);
+            }
+        }
+
+        loadStammdaten();
+
     }
 })();
