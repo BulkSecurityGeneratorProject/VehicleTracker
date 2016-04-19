@@ -5,9 +5,9 @@
         .module('vehicleTrackerApp')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['$scope', 'Principal', 'LoginService', 'Stammdaten', 'AlertService', 'uiGmapIsReady'];
+    HomeController.$inject = ['$scope', 'Principal', 'LoginService', 'Stammdaten', 'AlertService', 'uiGmapIsReady', 'Location'];
 
-    function HomeController ($scope, Principal, LoginService, Stammdaten, AlertService, uiGmapIsReady) {
+    function HomeController ($scope, Principal, LoginService, Stammdaten, AlertService, uiGmapIsReady, Location) {
         var vm = this;
         vm.account = null;
         vm.isAuthenticated = null;
@@ -90,6 +90,17 @@
         }
 
         loadStammdaten();
+
+        $scope.showOnMap = function(deviceId) {
+            Location.byDeviceId({'deviceId':deviceId}, onSuccess, onError);
+            function onSuccess(data) {
+                setMarkerAndCenterAround(deviceId, deviceId, data.latitude, data.longitude);
+            }
+            function onError(error) {
+                AlertService.error(error.data.message);
+            }
+        };
+
 
     }
 })();
