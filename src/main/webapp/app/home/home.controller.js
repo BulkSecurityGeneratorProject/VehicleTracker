@@ -50,7 +50,7 @@
                 },
                 title: title
             };
-            vm.map.markers = [];
+
             vm.map.markers.push(marker); // add marker to array
             vm.map.center.latitude = latitude;
             vm.map.center.longitude = longitude;
@@ -98,7 +98,7 @@
             function onOrderSuccess(data) {
                 uiGmapIsReady.promise().then(function (maps) {
                     vm.directionsDisplay.setMap(maps[0].map);
-                    calcRoute(data.from_latitude, data.from_longitude, data.to_latitude, data.to_longitude);
+                    calcRoute(data.fromLatitude, data.fromLongitude, data.toLatitude, data.toLongitude);
                 });
             }
             function onError(error) {
