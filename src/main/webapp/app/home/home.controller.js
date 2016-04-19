@@ -56,6 +56,7 @@
                 },
                 title: title
             };
+            vm.map.markers = [];
             vm.map.markers.push(marker); // add marker to array
             vm.map.center.latitude = latitude;
             vm.map.center.longitude = longitude;
