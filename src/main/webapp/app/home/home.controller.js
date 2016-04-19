@@ -9,21 +9,6 @@
 
     function HomeController ($scope, Principal, LoginService, Stammdaten, AlertService, uiGmapIsReady, Location, Order) {
         var vm = this;
-        vm.account = null;
-        vm.isAuthenticated = null;
-        vm.login = LoginService.open;
-        $scope.$on('authenticationSuccess', function() {
-            getAccount();
-        });
-
-        getAccount();
-
-        function getAccount() {
-            Principal.identity().then(function(account) {
-                vm.account = account;
-                vm.isAuthenticated = Principal.isAuthenticated;
-            });
-        }
 
         /** Map settings **/
         vm.map = null;
