@@ -1,0 +1,52 @@
+{
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "deviceId",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "orderNr",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "fromLatitude",
+            "fieldType": "Double",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "fromLongitude",
+            "fieldType": "Double",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "toLongitude",
+            "fieldType": "Double",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "toLatitude",
+            "fieldType": "Double",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "deadline",
+            "fieldType": "ZonedDateTime"
+        }
+    ],
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "order",
+    "pagination": "pagination"
+}

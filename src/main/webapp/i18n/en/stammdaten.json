@@ -1,0 +1,24 @@
+{
+    "vehicleTrackerApp": {
+        "stammdaten" : {
+            "home": {
+                "title": "Stammdatens",
+                "createLabel": "Create a new Stammdaten",
+                "createOrEditLabel": "Create or edit a Stammdaten",
+                "search": "Search for Stammdaten"
+            },
+            "created": "A new Stammdaten is created with identifier {{ param }}",
+            "updated": "A Stammdaten is updated with identifier {{ param }}",
+            "deleted": "A Stammdaten is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Stammdaten {{ id }}?"
+            },
+            "detail": {
+                "title": "Stammdaten"
+            },
+            "deviceId": "DeviceId",
+            "driver": "Driver",
+            "vehicle": "Vehicle"
+        }
+    }
+}

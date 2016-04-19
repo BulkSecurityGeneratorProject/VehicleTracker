@@ -1,0 +1,33 @@
+
+<div>
+    <h2><span translate="vehicleTrackerApp.location.detail.title">Location</span> {{vm.location.id}}</h2>
+    <hr>
+    <dl class="dl-horizontal">
+        <dt><span translate="vehicleTrackerApp.location.deviceId">DeviceId</dt></dt>
+        <dd>
+            <span>{{vm.location.deviceId}}<span>
+        </dd>
+        <hr>
+        <dt><span translate="vehicleTrackerApp.location.longitude">Longitude</dt></dt>
+        <dd>
+            <span>{{vm.location.longitude}}<span>
+        </dd>
+        <hr>
+        <dt><span translate="vehicleTrackerApp.location.latitude">Latitude</dt></dt>
+        <dd>
+            <span>{{vm.location.latitude}}<span>
+        </dd>
+        <hr>
+        <dt><span translate="vehicleTrackerApp.location.time">Time</dt></dt>
+        <dd>
+            <span>{{vm.location.time | date:'medium'}}</span>
+        </dd>
+        <hr>
+    </dl>
+
+    <button type="submit"
+            onclick="window.history.back()"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+</div>

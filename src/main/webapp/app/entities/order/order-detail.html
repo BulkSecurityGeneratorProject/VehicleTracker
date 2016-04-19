@@ -1,0 +1,48 @@
+
+<div>
+    <h2><span translate="vehicleTrackerApp.order.detail.title">Order</span> {{vm.order.id}}</h2>
+    <hr>
+    <dl class="dl-horizontal">
+        <dt><span translate="vehicleTrackerApp.order.deviceId">DeviceId</dt></dt>
+        <dd>
+            <span>{{vm.order.deviceId}}<span>
+        </dd>
+        <hr>
+        <dt><span translate="vehicleTrackerApp.order.orderNr">OrderNr</dt></dt>
+        <dd>
+            <span>{{vm.order.orderNr}}<span>
+        </dd>
+        <hr>
+        <dt><span translate="vehicleTrackerApp.order.fromLatitude">FromLatitude</dt></dt>
+        <dd>
+            <span>{{vm.order.fromLatitude}}<span>
+        </dd>
+        <hr>
+        <dt><span translate="vehicleTrackerApp.order.fromLongitude">FromLongitude</dt></dt>
+        <dd>
+            <span>{{vm.order.fromLongitude}}<span>
+        </dd>
+        <hr>
+        <dt><span translate="vehicleTrackerApp.order.toLongitude">ToLongitude</dt></dt>
+        <dd>
+            <span>{{vm.order.toLongitude}}<span>
+        </dd>
+        <hr>
+        <dt><span translate="vehicleTrackerApp.order.toLatitude">ToLatitude</dt></dt>
+        <dd>
+            <span>{{vm.order.toLatitude}}<span>
+        </dd>
+        <hr>
+        <dt><span translate="vehicleTrackerApp.order.deadline">Deadline</dt></dt>
+        <dd>
+            <span>{{vm.order.deadline | date:'medium'}}</span>
+        </dd>
+        <hr>
+    </dl>
+
+    <button type="submit"
+            onclick="window.history.back()"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+</div>

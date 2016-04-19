@@ -1,0 +1,72 @@
+<div>
+    <h2 translate="vehicleTrackerApp.order.home.title">Orders</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="order.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  translate="vehicleTrackerApp.order.home.createLabel">
+                        Create new Order
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
+                    <th jh-sort-by="id"><span translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="deviceId"><span translate="vehicleTrackerApp.order.deviceId">DeviceId</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="orderNr"><span translate="vehicleTrackerApp.order.orderNr">OrderNr</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="fromLatitude"><span translate="vehicleTrackerApp.order.fromLatitude">FromLatitude</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="fromLongitude"><span translate="vehicleTrackerApp.order.fromLongitude">FromLongitude</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="toLongitude"><span translate="vehicleTrackerApp.order.toLongitude">ToLongitude</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="toLatitude"><span translate="vehicleTrackerApp.order.toLatitude">ToLatitude</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="deadline"><span translate="vehicleTrackerApp.order.deadline">Deadline</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="order in vm.orders track by order.id">
+                    <td><a ui-sref="order-detail({id:order.id})">{{order.id}}</a></td>
+                    <td>{{order.deviceId}}</td>
+                    <td>{{order.orderNr}}</td>
+                    <td>{{order.fromLatitude}}</td>
+                    <td>{{order.fromLongitude}}</td>
+                    <td>{{order.toLongitude}}</td>
+                    <td>{{order.toLatitude}}</td>
+                    <td>{{order.deadline | date:'medium'}}</td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="order-detail({id:order.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="order.edit({id:order.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="order.delete({id:order.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="text-center">
+        <jhi-item-count page="vm.page" total="vm.queryCount"></jhi-item-count>
+        <uib-pagination class="pagination-sm" total-items="vm.totalItems" ng-model="vm.page" ng-change="vm.transition()"></uib-pagination>
+    </div>
+</div>

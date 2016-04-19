@@ -28,7 +28,7 @@
         <div class="well" ui-view="content"></div>
 
         <div class="footer" ng-cloak>
-            <p translate="footer">This is your footer</p>
+            <p ><span class="navbar-version">v{{VERSION}}</span></p>
         </div>
     </div>
 
@@ -44,37 +44,38 @@
 
     <!-- build:js app/vendor.js -->
     <!-- bower:js -->
-    <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/angular-aria/angular-aria.js"></script>
-    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-    <script src="bower_components/angular-cache-buster/angular-cache-buster.js"></script>
-    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-    <script src="bower_components/angular-dynamic-locale/src/tmhDynamicLocale.js"></script>
-    <script src="bower_components/ngstorage/ngStorage.js"></script>
-    <script src="bower_components/angular-loading-bar/build/loading-bar.js"></script>
-    <script src="bower_components/angular-resource/angular-resource.js"></script>
-    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-    <script src="bower_components/angular-translate/angular-translate.js"></script>
-    <script src="bower_components/messageformat/messageformat.js"></script>
-    <script src="bower_components/angular-translate-interpolation-messageformat/angular-translate-interpolation-messageformat.js"></script>
-    <script src="bower_components/angular-translate-loader-partial/angular-translate-loader-partial.js"></script>
-    <script src="bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.js"></script>
-    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-    <script src="bower_components/bootstrap-ui-datetime-picker/dist/datetime-picker.js"></script>
-    <script src="bower_components/json3/lib/json3.js"></script>
-    <script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
-    <script src="bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js"></script>
+    <script src='bower_components/jquery/dist/jquery.js'></script>
+    <script src='bower_components/angular/angular.js'></script>
+    <script src='bower_components/angular-aria/angular-aria.js'></script>
+    <script src='bower_components/angular-bootstrap/ui-bootstrap-tpls.js'></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src='bower_components/angular-cache-buster/angular-cache-buster.js'></script>
+    <script src='bower_components/angular-cookies/angular-cookies.js'></script>
+    <script src='bower_components/angular-dynamic-locale/src/tmhDynamicLocale.js'></script>
+    <script src='bower_components/ngstorage/ngStorage.js'></script>
+    <script src='bower_components/angular-loading-bar/build/loading-bar.js'></script>
+    <script src='bower_components/angular-resource/angular-resource.js'></script>
+    <script src='bower_components/angular-sanitize/angular-sanitize.js'></script>
+    <script src='bower_components/angular-translate/angular-translate.js'></script>
+    <script src='bower_components/messageformat/messageformat.js'></script>
+    <script src='bower_components/angular-translate-interpolation-messageformat/angular-translate-interpolation-messageformat.js'></script>
+    <script src='bower_components/angular-translate-loader-partial/angular-translate-loader-partial.js'></script>
+    <script src='bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.js'></script>
+    <script src='bower_components/angular-ui-router/release/angular-ui-router.js'></script>
+    <script src='bower_components/bootstrap-ui-datetime-picker/dist/datetime-picker.js'></script>
+    <script src='bower_components/json3/lib/json3.js'></script>
+    <script src='bower_components/ng-file-upload/ng-file-upload.js'></script>
+    <script src='bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js'></script>
     <!-- endbower -->
     <!-- endbuild -->
 
     <!-- build:js app/app.js  -->
     <!-- inject:js -->
     <script src="app/app.module.js"></script>
-    <script src="app/account/reset/finish/reset.finish.state.js"></script>
-    <script src="app/account/reset/finish/reset.finish.controller.js"></script>
     <script src="app/account/reset/request/reset.request.state.js"></script>
     <script src="app/account/reset/request/reset.request.controller.js"></script>
+    <script src="app/account/reset/finish/reset.finish.state.js"></script>
+    <script src="app/account/reset/finish/reset.finish.controller.js"></script>
     <script src="app/services/user/user.service.js"></script>
     <script src="app/services/auth/register.service.js"></script>
     <script src="app/services/auth/principal.service.js"></script>
@@ -91,6 +92,24 @@
     <script src="app/layouts/navbar/active-menu.directive.js"></script>
     <script src="app/layouts/navbar/active-link.directive.js"></script>
     <script src="app/layouts/error/error.state.js"></script>
+    <script src="app/entities/stammdaten/stammdaten.state.js"></script>
+    <script src="app/entities/stammdaten/stammdaten.service.js"></script>
+    <script src="app/entities/stammdaten/stammdaten.controller.js"></script>
+    <script src="app/entities/stammdaten/stammdaten-dialog.controller.js"></script>
+    <script src="app/entities/stammdaten/stammdaten-detail.controller.js"></script>
+    <script src="app/entities/stammdaten/stammdaten-delete-dialog.controller.js"></script>
+    <script src="app/entities/order/order.state.js"></script>
+    <script src="app/entities/order/order.service.js"></script>
+    <script src="app/entities/order/order.controller.js"></script>
+    <script src="app/entities/order/order-dialog.controller.js"></script>
+    <script src="app/entities/order/order-detail.controller.js"></script>
+    <script src="app/entities/order/order-delete-dialog.controller.js"></script>
+    <script src="app/entities/location/location.state.js"></script>
+    <script src="app/entities/location/location.service.js"></script>
+    <script src="app/entities/location/location.controller.js"></script>
+    <script src="app/entities/location/location-dialog.controller.js"></script>
+    <script src="app/entities/location/location-detail.controller.js"></script>
+    <script src="app/entities/location/location-delete-dialog.controller.js"></script>
     <script src="app/components/util/truncate-words.filter.js"></script>
     <script src="app/components/util/truncate-characters.filter.js"></script>
     <script src="app/components/util/sort.directive.js"></script>
@@ -170,6 +189,12 @@
     <script src="app/app.constants.js"></script>
     <!-- endinject -->
     <!-- endbuild -->
+
+    <!-- google maps -->
+    <script src='//maps.googleapis.com/maps/api/js?key=AIzaSyA5f6l3QY-OyFOohFtaIpion0sWaI8zoPA'></script>
+    <script src='bower_components/lodash/lodash.js'></script>
+    <script src='bower_components/angular-simple-logger/dist/angular-simple-logger.js'></script>
+    <script src='bower_components/angular-google-maps/dist/angular-google-maps.js'></script>
 
 </body>
 </html>

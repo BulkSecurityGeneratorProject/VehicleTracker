@@ -1,0 +1,118 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myOrderLabel" translate="vehicleTrackerApp.order.home.createOrEditLabel">Create or edit a Order</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group">
+            <label for="id" translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.order.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="vehicleTrackerApp.order.deviceId" for="field_deviceId">DeviceId</label>
+            <input type="text" class="form-control" name="deviceId" id="field_deviceId"
+                    ng-model="vm.order.deviceId"
+                    required />
+            <div ng-show="editForm.deviceId.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.deviceId.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="vehicleTrackerApp.order.orderNr" for="field_orderNr">OrderNr</label>
+            <input type="text" class="form-control" name="orderNr" id="field_orderNr"
+                    ng-model="vm.order.orderNr"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="vehicleTrackerApp.order.fromLatitude" for="field_fromLatitude">FromLatitude</label>
+            <input type="number" class="form-control" name="fromLatitude" id="field_fromLatitude"
+                    ng-model="vm.order.fromLatitude"
+                    required />
+            <div ng-show="editForm.fromLatitude.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.fromLatitude.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.fromLatitude.$error.number" translate="entity.validation.number">
+                    This field should be a number.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="vehicleTrackerApp.order.fromLongitude" for="field_fromLongitude">FromLongitude</label>
+            <input type="number" class="form-control" name="fromLongitude" id="field_fromLongitude"
+                    ng-model="vm.order.fromLongitude"
+                    required />
+            <div ng-show="editForm.fromLongitude.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.fromLongitude.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.fromLongitude.$error.number" translate="entity.validation.number">
+                    This field should be a number.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="vehicleTrackerApp.order.toLongitude" for="field_toLongitude">ToLongitude</label>
+            <input type="number" class="form-control" name="toLongitude" id="field_toLongitude"
+                    ng-model="vm.order.toLongitude"
+                    required />
+            <div ng-show="editForm.toLongitude.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.toLongitude.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.toLongitude.$error.number" translate="entity.validation.number">
+                    This field should be a number.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="vehicleTrackerApp.order.toLatitude" for="field_toLatitude">ToLatitude</label>
+            <input type="number" class="form-control" name="toLatitude" id="field_toLatitude"
+                    ng-model="vm.order.toLatitude"
+                    required />
+            <div ng-show="editForm.toLatitude.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.toLatitude.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.toLatitude.$error.number" translate="entity.validation.number">
+                    This field should be a number.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="vehicleTrackerApp.order.deadline" for="field_deadline">Deadline</label>
+                <div class="input-group">
+                    <input id="field_deadline" type="text" class="form-control" name="deadline" datetime-picker="{{dateformat}}" ng-model="vm.order.deadline" is-open="vm.datePickerOpenStatus.deadline"
+                      />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('deadline')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>
