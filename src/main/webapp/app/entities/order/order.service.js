@@ -19,7 +19,16 @@
                     return data;
                 }
             },
-            'update': { method:'PUT' }
+            'update': { method:'PUT' },
+            'byDeviceId' : {
+                method: 'GET',
+                url: 'api/orders/device/:deviceId',
+                transformResponse: function (data) {
+                    data = angular.fromJson(data);
+                    data.deadline = DateUtils.convertDateTimeFromServer(data.deadline);
+                    return data;
+                }
+            }
         });
     }
 })();

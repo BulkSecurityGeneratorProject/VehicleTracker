@@ -30,10 +30,10 @@ import java.util.Optional;
 public class OrderResource {
 
     private final Logger log = LoggerFactory.getLogger(OrderResource.class);
-        
+
     @Inject
     private OrderRepository orderRepository;
-    
+
     /**
      * POST  /orders : Create a new order.
      *
@@ -94,7 +94,7 @@ public class OrderResource {
     public ResponseEntity<List<Order>> getAllOrders(Pageable pageable)
         throws URISyntaxException {
         log.debug("REST request to get a page of Orders");
-        Page<Order> page = orderRepository.findAll(pageable); 
+        Page<Order> page = orderRepository.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/orders");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
@@ -112,6 +112,26 @@ public class OrderResource {
     public ResponseEntity<Order> getOrder(@PathVariable String id) {
         log.debug("REST request to get Order : {}", id);
         Order order = orderRepository.findOne(id);
+        return Optional.ofNullable(order)
+            .map(result -> new ResponseEntity<>(
+                result,
+                HttpStatus.OK))
+            .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+    /**
+     * GET  /orders/:id : get the "id" order.
+     *
+     * @param id the id of the order to retrieve
+     * @return the ResponseEntity with status 200 (OK) and with body the order, or with status 404 (Not Found)
+     */
+    @RequestMapping(value = "/orders/device/{id}",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<Order> getOrderByDeviceId(@PathVariable String id) {
+        log.debug("REST request to get Order by Device Id: {}", id);
+        Order order = orderRepository.findOneByDeviceIdOrderByDeadlineDesc(id);
         return Optional.ofNullable(order)
             .map(result -> new ResponseEntity<>(
                 result,

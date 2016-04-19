@@ -5,9 +5,9 @@
         .module('vehicleTrackerApp')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['$scope', 'Principal', 'LoginService', 'Stammdaten', 'AlertService', 'uiGmapIsReady', 'Location'];
+    HomeController.$inject = ['$scope', 'Principal', 'LoginService', 'Stammdaten', 'AlertService', 'uiGmapIsReady', 'Location', 'Order'];
 
-    function HomeController ($scope, Principal, LoginService, Stammdaten, AlertService, uiGmapIsReady, Location) {
+    function HomeController ($scope, Principal, LoginService, Stammdaten, AlertService, uiGmapIsReady, Location, Order) {
         var vm = this;
         vm.account = null;
         vm.isAuthenticated = null;
@@ -58,7 +58,7 @@
 
         setMarkerAndCenterAround(1, 'ActiveDriver', 51.0504641, 4.30425);
 
-        function calcRoute(latitudeTo, longitudeTo, latitudeFrom, longitudeFrom) {
+        function calcRoute(latitudeFrom, longitudeFrom, latitudeTo, longitudeTo) {
             var directionsService = new google.maps.DirectionsService();
             var request = {
                 origin: {lat: latitudeFrom, lng: longitudeFrom},
@@ -88,12 +88,17 @@
         loadStammdaten();
 
         $scope.showOnMap = function(deviceId) {
-            Location.byDeviceId({'deviceId':deviceId}, onSuccess, onError);
-            function onSuccess(data) {
+            Location.byDeviceId({'deviceId':deviceId}, onLocationSuccess, onError);
+            Order.byDeviceId({'deviceId':deviceId}, onOrderSuccess, onError);
+            function onLocationSuccess(data) {
                 uiGmapIsReady.promise().then(function (maps) {
                     setMarkerAndCenterAround(deviceId, deviceId, data.latitude, data.longitude);
+                });
+            }
+            function onOrderSuccess(data) {
+                uiGmapIsReady.promise().then(function (maps) {
                     vm.directionsDisplay.setMap(maps[0].map);
-                    calcRoute(50.850340, 4.3053499, 51.219053, 4.404418);
+                    calcRoute(data.from_latitude, data.from_longitude, data.to_latitude, data.to_longitude);
                 });
             }
             function onError(error) {
