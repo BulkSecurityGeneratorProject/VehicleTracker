@@ -2,7 +2,9 @@
     <div class="row">
         <div class="col-md-8">
             <div id="map_canvas" ng-show="vm.account">
-                <ui-gmap-google-map center="vm.map.center" zoom="vm.map.zoom" options="vm.options"></ui-gmap-google-map>
+                <ui-gmap-google-map center="vm.map.center" zoom="vm.map.zoom" options="vm.options">
+                    <ui-gmap-marker ng-repeat="m in vm.map.markers" coords="m.coords" icon="m.icon" idkey="m.id"></ui-gmap-marker>
+                </ui-gmap-google-map>
             </div>
         </div>
         <div class="col-md-4">
@@ -41,3 +43,4 @@
     </div>
 
 </div>
+

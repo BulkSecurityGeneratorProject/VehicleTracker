@@ -12,7 +12,7 @@
         vm.map = null;
         vm.account = null;
         vm.isAuthenticated = null;
-        vm.markers = [];
+        vm.markers = null;
         vm.login = LoginService.open;
         $scope.$on('authenticationSuccess', function() {
             getAccount();
@@ -32,22 +32,27 @@
 
         initMap();
         function initMap() {
-            vm.map = {center: {latitude: 51.219053, longitude: 4.404418 }, zoom: 14 };
+            vm.map = {center: {latitude: 51.219053, longitude: 4.404418 }, markers: [], zoom: 14 };
             vm.options = {scrollwheel: false};
+            vm.markers = vm.map.markers;
         }
 
-        function setMarker(map, position) {
+        function setMarkerAndCenterAround(id, latitude, longitude) {
             var marker;
-            var markerOptions = {
-                position: position,
-                map: map,
-                icon: 'https://maps.google.com/mapfiles/ms/icons/green-dot.png'
-            };
 
-            marker = new google.maps.Marker(markerOptions);
-            vm.markers.push(marker); // add marker to array
+            marker = {
+                id: id,
+                coords: {
+                    latitude: latitude,
+                    longitude: longitude
+                }
+            };
+            vm.map.markers.push(marker); // add marker to array
+            vm.map.center.latitude = latitude;
+            vm.map.center.longitude = longitude;
         }
 
+        setMarkerAndCenterAround(1, 51.219053, 4.404418);
         //setMarker(vm.map, new google.maps.LatLng(51.508515, -0.125487), 'London', 'Just some content');
 
 
