@@ -463,6 +463,23 @@ public class JHipsterProperties {
 
             public void setQueueSize(int queueSize) { this.queueSize = queueSize; }
         }
+
+    }
+
+    private final Simulator simulator = new Simulator();
+
+    public Simulator getSimulator() {
+        return simulator;
+    }
+
+    public static class Simulator {
+        private boolean enabled = false;
+        public boolean isEnabled() {
+            return enabled;
+        }
+        public void setEnabled(boolean enabled) {
+            this.enabled = enabled;
+        }
     }
 
 }

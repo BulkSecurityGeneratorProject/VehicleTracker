@@ -30,10 +30,10 @@ import java.util.Optional;
 public class LocationResource {
 
     private final Logger log = LoggerFactory.getLogger(LocationResource.class);
-        
+
     @Inject
     private LocationRepository locationRepository;
-    
+
     /**
      * POST  /locations : Create a new location.
      *
@@ -94,7 +94,7 @@ public class LocationResource {
     public ResponseEntity<List<Location>> getAllLocations(Pageable pageable)
         throws URISyntaxException {
         log.debug("REST request to get a page of Locations");
-        Page<Location> page = locationRepository.findAll(pageable); 
+        Page<Location> page = locationRepository.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/locations");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
@@ -112,6 +112,26 @@ public class LocationResource {
     public ResponseEntity<Location> getLocation(@PathVariable String id) {
         log.debug("REST request to get Location : {}", id);
         Location location = locationRepository.findOne(id);
+        return Optional.ofNullable(location)
+            .map(result -> new ResponseEntity<>(
+                result,
+                HttpStatus.OK))
+            .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+    /**
+     * GET  /locations/:id : get the "id" location.
+     *
+     * @param id the id of the location to retrieve
+     * @return the ResponseEntity with status 200 (OK) and with body the location, or with status 404 (Not Found)
+     */
+    @RequestMapping(value = "/locations/device/{id}",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<Location> getLocationByDeviceId(@PathVariable String id) {
+        log.debug("REST request to get Location by Device Id: {}", id);
+        Location location = locationRepository.findOneByDeviceIdOrderByTimeDesc(id);
         return Optional.ofNullable(location)
             .map(result -> new ResponseEntity<>(
                 result,
