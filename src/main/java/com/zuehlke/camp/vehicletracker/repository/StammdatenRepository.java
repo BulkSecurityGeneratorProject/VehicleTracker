@@ -8,5 +8,5 @@ import org.springframework.data.mongodb.repository.MongoRepository;
  * Spring Data MongoDB repository for the Stammdaten entity.
  */
 public interface StammdatenRepository extends MongoRepository<Stammdaten,String> {
-
+    Stammdaten findOneByDeviceId(String deviceId);
 }

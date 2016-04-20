@@ -61,3 +61,6 @@ jhipster:
         contactEmail:
         license:
         licenseUrl:
+
+    simulator:
+        enabled: false
