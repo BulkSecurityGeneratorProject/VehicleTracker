@@ -80,7 +80,7 @@
                 uiGmapIsReady.promise().then(function (maps) {
                     setMarkerAndCenterAround(deviceId, deviceId, data.latitude, data.longitude);
                 });
-                setTimeout(function(){$scope.showOnMap(deviceId, true)}, 10000);
+                setTimeout(function(){$scope.showOnMap(deviceId, true)}, 30000);
             }
             function onOrderSuccess(data) {
                 uiGmapIsReady.promise().then(function (maps) {
