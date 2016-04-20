@@ -38,7 +38,7 @@ gulp.task('clean', function () {
 });
 
 gulp.task('copy', function () {
-    return es.merge( 
+    return es.merge(
         gulp.src(config.app + 'i18n/**')
         .pipe(plumber({errorHandler: handleErrors}))
         .pipe(changed(config.dist + 'i18n/'))
@@ -226,10 +226,10 @@ gulp.task('eslint:fix', function () {
 });
 
 gulp.task('test', ['wiredep:test', 'ngconstant:dev'], function (done) {
-    new KarmaServer({
-        configFile: __dirname + '/' + config.test + 'karma.conf.js',
-        singleRun: true
-    }, done).start();
+    // new KarmaServer({
+    //     configFile: __dirname + '/' + config.test + 'karma.conf.js',
+    //     singleRun: true
+    // }, done).start();
 });
 
 /* to run individual suites pass `gulp itest --suite suiteName` */
