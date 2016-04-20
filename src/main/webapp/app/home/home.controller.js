@@ -69,13 +69,18 @@
 
         loadStammdaten();
 
-        $scope.showOnMap = function(deviceId) {
+        var activeId;
+        $scope.showOnMap = function(deviceId, fromTimeout) {
+            if (fromTimeout && deviceId != activeId) return;
+            activeId = deviceId;
+
             Location.byDeviceId({'deviceId':deviceId}, onLocationSuccess, onError);
             Order.byDeviceId({'deviceId':deviceId}, onOrderSuccess, onError);
             function onLocationSuccess(data) {
                 uiGmapIsReady.promise().then(function (maps) {
                     setMarkerAndCenterAround(deviceId, deviceId, data.latitude, data.longitude);
                 });
+                setTimeout(function(){$scope.showOnMap(deviceId, true)}, 10000);
             }
             function onOrderSuccess(data) {
                 uiGmapIsReady.promise().then(function (maps) {
