@@ -14,14 +14,12 @@
         vm.map = null;
         vm.options = null;
 
-        vm.markers = null;
         vm.directionsDisplay = new google.maps.DirectionsRenderer({draggable: true, markerOptions: {visible: false}});
 
         initMap();
         function initMap() {
             vm.map = {center: {latitude: 51.219053, longitude: 4.404418}, markers: [], zoom: 14, control: {}};
             vm.options = {scrollwheel: false};
-            vm.markers = vm.map.markers;
         }
 
         function setMarkerAndCenterAround(id, title, latitude, longitude) {
@@ -36,12 +34,11 @@
                 title: title
             };
 
+            vm.map.markers.pop();
             vm.map.markers.push(marker); // add marker to array
             vm.map.center.latitude = latitude;
             vm.map.center.longitude = longitude;
         }
-
-        setMarkerAndCenterAround(1, 'ActiveDriver', 51.0504641, 4.30425);
 
         function calcRoute(latitudeFrom, longitudeFrom, latitudeTo, longitudeTo) {
             var directionsService = new google.maps.DirectionsService();
