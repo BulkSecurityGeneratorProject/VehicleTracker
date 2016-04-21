@@ -19,7 +19,7 @@ spring:
             enabled: false
     data:
         mongodb:
-            uri: mongodb://localhost:27017
+            uri: mongodb://104.46.32.71:27017
             database: VehicleTracker
     mail:
         host: localhost
@@ -70,4 +70,4 @@ jhipster:
             queueSize: 512
 
     simulator:
-        enabled: false
+        enabled: true
