@@ -42,6 +42,12 @@ angular.module('starter.controllers', [])
     latitude : 0
   };
 
+  updateTime();
+  function updateTime () {
+    $scope.time = new Date().getTime();
+    console.log($scope.time);
+  }
+
   $scope.checkGPS = function() {
     $scope.position.longitude = "";
     $scope.position.latitude = "";
