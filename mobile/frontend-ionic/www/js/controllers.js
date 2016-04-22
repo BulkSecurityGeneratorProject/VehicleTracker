@@ -21,8 +21,32 @@ angular.module('starter.controllers', [])
   $scope.chat = Chats.get($stateParams.chatId);
 })
 
-.controller('AccountCtrl', function($scope) {
+.controller('AccountCtrl', function($scope, $ionicLoading) {
   $scope.settings = {
-    enableFriends: true
+    enableGPS: false
   };
+
+  $scope.position = {
+    longitude: 0,
+    latitude : 0
+  };
+
+  $scope.checkGPS = function() {
+    if ($scope.settings.enableGPS) {
+      $ionicLoading.show({
+        template: 'Checking GPS...'
+      });
+      navigator.geolocation.getCurrentPosition(function (position) {
+        console.log(position.coords.latitude + ", " + position.coords.longitude);
+        $scope.position.longitude = position.coords.longitude;
+        $scope.position.latitude = position.coords.latitude;
+        $ionicLoading.hide();
+      });
+    }  else {
+      console.log("GPS disabled");
+    }
+  };
+
+  $scope.checkGPS();
+
 });

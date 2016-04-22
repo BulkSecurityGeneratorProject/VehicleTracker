@@ -1,9 +1,76 @@
-<ion-view view-title="Account">
+<ion-view view-title="Location">
   <ion-content>
     <ion-list>
-    <ion-toggle  ng-model="settings.enableFriends">
-        Enable Friends
+    <ion-toggle  ng-model="settings.enableGPS" ng-change="checkGPS()">
+        Enable GPS
     </ion-toggle>
     </ion-list>
+    <div/>
+    <!--<table>-->
+      <!--<tr>-->
+        <!--<th>Longitude: &nbsp;</th>-->
+        <!--<td>{{position.longitude}}</td>-->
+      <!--</tr>-->
+      <!--<tr>-->
+        <!--<th>&nbsp;&nbsp;Latitude: &nbsp;</th>-->
+        <!--<td>{{position.latitude}}</td>-->
+      <!--</tr>-->
+    <!--</table>-->
+    <div class="list">
+
+      <div class="item item-divider">
+        Location
+      </div>
+
+      <a class="item" href="#">
+        Longitude <span style="float:right"><b>{{position.longitude}}</b></span>
+      </a>
+
+      <a class="item" href="#">
+        Latitude <span style="float:right"><b>{{position.latitude}}</b></span>
+      </a>
+
+      <a class="item" href="#">
+        Time
+      </a>
+
+      <div class="item item-divider">
+        Stammdaten
+      </div>
+
+      <a class="item" href="#">
+        Device Id
+      </a>
+      <a class="item" href="#">
+        Vehicle
+      </a>
+      <a class="item" href="#">
+        Driver
+      </a>
+
+      <div class="item item-divider">
+        Order
+      </div>
+
+      <a class="item" href="#">
+        Order Number
+      </a>
+      <a class="item" href="#">
+        From Latitude
+      </a>
+      <a class="item" href="#">
+        From Longitude
+      </a>
+      <a class="item" href="#">
+        To Latitude
+      </a>
+      <a class="item" href="#">
+        To Longitude
+      </a>
+      <a class="item" href="#">
+        Deadline
+      </a>
+
+    </div>
   </ion-content>
 </ion-view>
