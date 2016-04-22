@@ -26,6 +26,13 @@ angular.module('starter.controllers', [])
   $scope.host = $ENV.settings.API.host;
   $scope.port = $ENV.settings.API.port;
 
+  var id = window.localStorage.getItem('deviceId');
+  if (!id) {
+    id = Math.random().toString(36).slice(2);
+    window.localStorage.setItem('deviceId', id);
+  }
+  $scope.deviceId = id;
+
   $scope.settings = {
     enableGPS: false
   };
