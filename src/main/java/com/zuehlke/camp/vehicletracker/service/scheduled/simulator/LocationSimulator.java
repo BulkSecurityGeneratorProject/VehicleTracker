@@ -37,7 +37,7 @@ public class LocationSimulator {
     LocationRepository locationRepository;
 
     @Scheduled(fixedRate = 60000)
-    public void reportCurrentTime() throws IOException {
+    public void simulateLocation() throws IOException {
         if (jHipsterProperties.getSimulator().isEnabled()) {
 
             // check stammdaten exist:

@@ -5,9 +5,9 @@
         .module('vehicleTrackerApp')
         .controller('NavbarController', NavbarController);
 
-    NavbarController.$inject = ['$scope', '$location', '$state', 'Auth', 'Principal', 'ENV', 'LoginService'];
+    NavbarController.$inject = ['$scope', '$rootScope', '$state', 'Auth', 'Principal', 'ENV', 'LoginService'];
 
-    function NavbarController ($scope, $location, $state, Auth, Principal, ENV, LoginService) {
+    function NavbarController ($scope, $rootScope, $state, Auth, Principal, ENV, LoginService) {
         var vm = this;
 
         vm.navCollapsed = true;
@@ -17,6 +17,7 @@
         vm.logout = logout;
         vm.$state = $state;
         vm.account = null;
+        $rootScope.loggedInUser = null;
 
         function login () {
             LoginService.open();
@@ -25,6 +26,7 @@
         function logout () {
             Auth.logout();
             vm.account = null;
+            $rootScope.loggedInUser = null;
             $state.go('home');
         }
 
@@ -36,6 +38,7 @@
         function getAccount() {
             Principal.identity().then(function(account) {
                 vm.account = account;
+                $rootScope.loggedInUser = account.login;
                 vm.isAuthenticated = Principal.isAuthenticated;
             });
         }
