@@ -21,7 +21,11 @@ angular.module('starter.controllers', [])
   $scope.chat = Chats.get($stateParams.chatId);
 })
 
-.controller('AccountCtrl', function($scope, $ionicLoading) {
+.controller('AccountCtrl', function($scope, $ionicLoading, $ENV) {
+
+  $scope.host = $ENV.settings.API.host;
+  $scope.port = $ENV.settings.API.port;
+
   $scope.settings = {
     enableGPS: false
   };
