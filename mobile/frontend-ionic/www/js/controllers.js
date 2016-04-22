@@ -32,6 +32,8 @@ angular.module('starter.controllers', [])
   };
 
   $scope.checkGPS = function() {
+    $scope.position.longitude = "";
+    $scope.position.latitude = "";
     if ($scope.settings.enableGPS) {
       $ionicLoading.show({
         template: 'Checking GPS...'
