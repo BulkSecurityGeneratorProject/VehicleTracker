@@ -1,32 +1,40 @@
 <ion-view view-title="Location update for server: &quot;{{host}}:{{port}}&quot;">
   <ion-content>
-    <ion-list>
-    <ion-toggle  ng-model="settings.enableGPS" ng-change="checkGPS()">
-        Enable GPS
-    </ion-toggle>
-    </ion-list>
-    <div/>
     <div class="list">
 
       <div class="item item-divider">
-        Location <span style="float:right"><button class="button button-small button-balanced">Send</button></span>
+        Device Id <span style="float:right"><b>{{deviceId}}</b></span>
+      </div>
+      <div class="item item-divider"/>
+
+      <div class="item item-divider">
+        Location <span ng-show="settings.enableGPS" style="float:right"><button class="button button-small button-balanced">Send</button></span>
       </div>
 
-      <a class="item">
-        Device Id <span style="float:right"><b>{{deviceId}}</b></span>
-      </a>
+      <span ng-hide="settings.enableGPS">
+        <ion-toggle ng-model="settings.enableGPS" ng-change="checkGPS()">
+          Enable GPS
+        </ion-toggle>
+      </span>
 
-      <a class="item">
-        Longitude <span style="float:right"><b>{{position.longitude}}</b></span>
-      </a>
+      <span ng-show="settings.enableGPS">
 
-      <a class="item">
-        Latitude <span style="float:right"><b>{{position.latitude}}</b></span>
-      </a>
+        <ion-toggle ng-model="settings.enableGPS" ng-change="checkGPS()">
+          Enable GPS
+        </ion-toggle>
 
-      <a class="item">
-        Time <span style="float:right"><b>{{time}}</b></span>
-      </a>
+        <a class="item">
+          Longitude <span style="float:right"><b>{{position.longitude}}</b></span>
+        </a>
+
+        <a class="item">
+          Latitude <span style="float:right"><b>{{position.latitude}}</b></span>
+        </a>
+
+        <a class="item">
+          Time <span style="float:right"><b>{{time}}</b></span>
+        </a>
+      </span>
 
       <div class="item item-divider">
         Stammdaten <span style="float:right"><button class="button button-small button-balanced">Send</button></span>
