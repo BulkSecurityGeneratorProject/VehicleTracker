@@ -21,7 +21,7 @@ angular.module('starter.controllers', [])
   $scope.chat = Chats.get($stateParams.chatId);
 })
 
-.controller('AccountCtrl', function($scope, $ionicLoading, $ENV) {
+.controller('AccountCtrl', function($scope, $ionicLoading, $ENV, $timeout) {
 
   $scope.host = $ENV.settings.API.host;
   $scope.port = $ENV.settings.API.port;
@@ -45,7 +45,7 @@ angular.module('starter.controllers', [])
   updateTime();
   function updateTime () {
     $scope.time = new Date().getTime();
-    console.log($scope.time);
+    $timeout(updateTime, 1000);
   }
 
   $scope.checkGPS = function() {
