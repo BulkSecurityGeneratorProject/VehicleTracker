@@ -21,7 +21,7 @@ angular.module('starter.controllers', [])
   $scope.chat = Chats.get($stateParams.chatId);
 })
 
-.controller('AccountCtrl', function($scope, $ionicLoading, $ENV, $timeout) {
+.controller('AccountCtrl', function($scope, $ionicLoading, $ENV, $timeout, $filter) {
 
   $scope.host = $ENV.settings.API.host;
   $scope.port = $ENV.settings.API.port;
@@ -44,7 +44,8 @@ angular.module('starter.controllers', [])
 
   updateTime();
   function updateTime () {
-    $scope.time = new Date().getTime();
+    var now = new Date().getTime();
+    $scope.time = $filter('date')(now, "dd/MM/yyyy HH:mm:ss");
     $timeout(updateTime, 1000);
   }
 
