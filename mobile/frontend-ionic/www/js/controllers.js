@@ -45,7 +45,7 @@ angular.module('starter.controllers', [])
   updateTime();
   function updateTime () {
     var now = new Date().getTime();
-    $scope.time = $filter('date')(now, "dd/MM/yyyy HH:mm:ss");
+    $scope.time = $filter('date')(now, "yyyy-MM-dd HH:mm:ss");
     $timeout(updateTime, 1000);
   }
 
