@@ -2,7 +2,7 @@ angular.module('starter.controllers', [])
 
 .controller('DashCtrl', function($scope) {})
 
-.controller('AccountCtrl', function($scope, $ionicLoading, $ENV, $timeout, $filter) {
+.controller('AccountCtrl', function($scope, $ionicLoading, $ENV, $timeout, $filter, $http) {
 
   $scope.host = $ENV.settings.API.host;
   $scope.port = $ENV.settings.API.port;
@@ -66,6 +66,7 @@ angular.module('starter.controllers', [])
     console.log($scope.deviceId);
     console.log(vehicle);
     console.log(driver);
+    post("stammdatens", "{\"deviceId\":\""+$scope.deviceId+"\", \"vehicle\":\""+vehicle+"\", \"driver\":\""+driver+"\"}")
   };
 
   $scope.sendOrder = function() {
@@ -82,6 +83,7 @@ angular.module('starter.controllers', [])
     console.log(toLatitude);
     console.log(toLongitude);
     console.log(deadline);
+    post("orders", "{\"deviceId\":\""+$scope.deviceId+"\", \"orderNr\":\""+order+"\", \"fromLatitude\":\""+fromLatitude+"\", \"fromLongitude\":\""+fromLongitude+"\", \"toLatitude\":\""+toLatitude+"\", \"toLongitude\":\""+toLongitude+"\", \"deadline\":\""+deadline+"\"}")
   };
 
   $scope.sendLocation = function() {
@@ -89,12 +91,23 @@ angular.module('starter.controllers', [])
     console.log($scope.position.longitude);
     console.log($scope.position.latitude);
     console.log($scope.time);
+    post("locations", "{\"deviceId\":\""+$scope.deviceId+"\", \"longitude\":\""+$scope.position.longitude+"\", \"latitude\":\""+$scope.position.latitude+"\", \"time\":\""+$scope.time+"\"}")
   };
 
   function getValue(field) {
     var value = document.getElementById(field).value;
     if (!value) value = $scope[field];
     return value;
+  }
+
+  function post(type, data) {
+    $http.post('http://'+$scope.host+':'+$scope.port+"/api/" + type, data).then(function (successResult) {
+      console.log(successResult);
+      alert("OK");
+    }, function (errResult) {
+      console.log(errResult);
+      alert("FAILED");
+    });
   }
 
 });
