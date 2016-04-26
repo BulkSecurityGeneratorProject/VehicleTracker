@@ -89,7 +89,7 @@
                 });
             }
             function onError(error) {
-                AlertService.error(error.data.message);
+                console.error(error);
             }
         };
 

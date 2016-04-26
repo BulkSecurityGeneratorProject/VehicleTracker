@@ -14,8 +14,12 @@
             'get': {
                 method: 'GET',
                 transformResponse: function (data) {
+                    try {
                     data = angular.fromJson(data);
                     data.deadline = DateUtils.convertDateTimeFromServer(data.deadline);
+                    } catch (e) {
+                        console.error(e);
+                    }
                     return data;
                 }
             },
@@ -24,8 +28,12 @@
                 method: 'GET',
                 url: 'api/orders/device/:deviceId',
                 transformResponse: function (data) {
-                    data = angular.fromJson(data);
-                    data.deadline = DateUtils.convertDateTimeFromServer(data.deadline);
+                    try {
+                        data = angular.fromJson(data)
+                        data.deadline = DateUtils.convertDateTimeFromServer(data.deadline);
+                    } catch (e) {
+                        console.error(e);
+                    }
                     return data;
                 }
             }
