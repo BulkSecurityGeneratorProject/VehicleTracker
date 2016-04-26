@@ -8,7 +8,7 @@
       <div class="item item-divider"/>
 
       <div class="item item-divider">
-        Location <span ng-show="settings.enableGPS" style="float:right"><button class="button button-small button-balanced">Send</button></span>
+        Location <span ng-show="settings.enableGPS" style="float:right"><button  ng-click="sendLocation()" class="button button-small button-balanced">Send</button></span>
       </div>
 
       <span ng-hide="settings.enableGPS">
@@ -36,38 +36,40 @@
         </a>
       </span>
 
+      <form>
       <div class="item item-divider">
-        Stammdaten <span style="float:right"><button class="button button-small button-balanced">Send</button></span>
+        Stammdaten <span style="float:right"><button ng-click="sendStammdaten()" class="button button-small button-balanced">Send</button></span>
       </div>
 
       <a class="item">
-        Vehicle <span style="float:right"><input name="Vehicle" style="text-align: right" type="text" placeholder="BMW123"></span>
+        Vehicle <span style="float:right"><input id="vehicle" style="text-align: right" type="text" placeholder="{{vehicle}}"></span>
       </a>
       <a class="item">
-        Driver <span style="float:right"><input name="Driver" style="text-align: right" type="text" placeholder="Karl Meerkatz"></span>
+        Driver <span style="float:right"><input id="driver" style="text-align: right" type="text" placeholder="{{driver}}"></span>
       </a>
+      </form>
 
       <div class="item item-divider">
-        Order <span style="float:right"><button class="button button-small button-balanced">Send</button></span>
+        Order <span style="float:right"><button ng-click="sendOrder()" class="button button-small button-balanced">Send</button></span>
       </div>
 
       <a class="item">
-        Order Number <span style="float:right"><input name="Order" style="text-align: right" type="text" placeholder="ORD000001"></span>
+        Order Number <span style="float:right"><input id="order" style="text-align: right" type="text" placeholder="{{order}}"></span>
       </a>
       <a class="item">
-        From Latitude <span style="float:right"><input name="FromLatitude" style="text-align: right" type="text" placeholder="48.4105749"></span>
+        From Latitude <span style="float:right"><input id="fromLatitude" style="text-align: right" type="text" placeholder="{{fromLatitude}}"></span>
       </a>
       <a class="item">
-        From Longitude <span style="float:right"><input name="FromLongitude" style="text-align: right" type="text" placeholder="15.5977561"></span>
+        From Longitude <span style="float:right"><input id="fromLongitude" style="text-align: right" type="text" placeholder="{{fromLongitude}}"></span>
       </a>
       <a class="item">
-        To Latitude <span style="float:right"><input name="ToLatitude" style="text-align: right" type="text" placeholder="48.2209603"></span>
+        To Latitude <span style="float:right"><input id="toLatitude" style="text-align: right" type="text" placeholder="{{toLatitude}}"></span>
       </a>
       <a class="item">
-        To Longitude <span style="float:right"><input name="ToLongitude" style="text-align: right" type="text" placeholder="16.3815945"></span>
+        To Longitude <span style="float:right"><input id="toLongitude" style="text-align: right" type="text" placeholder="{{toLongitude}}"></span>
       </a>
       <a class="item">
-        Deadline <span style="float:right"><input name="Deadline" style="text-align: right" type="text" placeholder="{{time}}"></span>
+        Deadline <span style="float:right"><input id="deadline" style="text-align: right" type="text" placeholder="{{deadline}}"></span>
       </a>
 
     </div>
