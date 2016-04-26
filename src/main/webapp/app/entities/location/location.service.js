@@ -14,8 +14,12 @@
             'get': {
                 method: 'GET',
                 transformResponse: function (data) {
-                    data = angular.fromJson(data);
-                    data.time = DateUtils.convertDateTimeFromServer(data.time);
+                    try {
+                        data = angular.fromJson(data);
+                        data.time = DateUtils.convertDateTimeFromServer(data.time);
+                    } catch (e) {
+                        console.error(e);
+                    }
                     return data;
                 }
             },
@@ -24,8 +28,12 @@
                 method: 'GET',
                 url: 'api/locations/device/:deviceId',
                 transformResponse: function (data) {
-                    data = angular.fromJson(data);
-                    data.time = DateUtils.convertDateTimeFromServer(data.time);
+                    try {
+                        data = angular.fromJson(data);
+                        data.time = DateUtils.convertDateTimeFromServer(data.time);
+                    } catch (e) {
+                        console.error(e);
+                    }
                     return data;
                 }
             }

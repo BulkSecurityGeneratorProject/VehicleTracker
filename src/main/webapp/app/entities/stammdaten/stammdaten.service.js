@@ -14,7 +14,11 @@
             'get': {
                 method: 'GET',
                 transformResponse: function (data) {
-                    data = angular.fromJson(data);
+                    try {
+                        data = angular.fromJson(data);
+                    } catch (e) {
+                        console.error(e);
+                    }
                     return data;
                 }
             },
