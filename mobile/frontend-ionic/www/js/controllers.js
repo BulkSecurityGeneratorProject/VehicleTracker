@@ -33,8 +33,8 @@ angular.module('starter.controllers', [])
   updateTime();
   function updateTime () {
     var now = new Date().getTime();
-    $scope.time = $filter('date')(now, "yyyy-MM-dd HH:mm:ss");
-    $scope.deadline = $filter('date')(now, "yyyy-MM-dd HH:mm:ss");
+    $scope.time = $filter('date')(now, "yyyy-MM-ddTHH:mm:ss.000");
+    $scope.deadline = $filter('date')(now, "yyyy-MM-ddTHH:mm:ss.000");
     $timeout(updateTime, 1000);
   }
 
@@ -83,7 +83,7 @@ angular.module('starter.controllers', [])
     console.log(toLatitude);
     console.log(toLongitude);
     console.log(deadline);
-    post("orders", "{\"deviceId\":\""+$scope.deviceId+"\", \"orderNr\":\""+order+"\", \"fromLatitude\":\""+fromLatitude+"\", \"fromLongitude\":\""+fromLongitude+"\", \"toLatitude\":\""+toLatitude+"\", \"toLongitude\":\""+toLongitude+"\", \"deadline\":\""+deadline+"\"}")
+    post("orders", "{\"deviceId\":\""+$scope.deviceId+"\", \"orderNr\":\""+order+"\", \"fromLatitude\":"+fromLatitude+", \"fromLongitude\":"+fromLongitude+", \"toLatitude\":"+toLatitude+", \"toLongitude\":"+toLongitude+", \"deadline\":\""+deadline+"Z\"}")
   };
 
   $scope.sendLocation = function() {
@@ -91,7 +91,7 @@ angular.module('starter.controllers', [])
     console.log($scope.position.longitude);
     console.log($scope.position.latitude);
     console.log($scope.time);
-    post("locations", "{\"deviceId\":\""+$scope.deviceId+"\", \"longitude\":\""+$scope.position.longitude+"\", \"latitude\":\""+$scope.position.latitude+"\", \"time\":\""+$scope.time+"\"}")
+    post("locations", "{\"deviceId\":\""+$scope.deviceId+"\", \"longitude\":"+$scope.position.longitude+", \"latitude\":"+$scope.position.latitude+", \"time\":\""+$scope.time+"Z\"}")
   };
 
   function getValue(field) {
