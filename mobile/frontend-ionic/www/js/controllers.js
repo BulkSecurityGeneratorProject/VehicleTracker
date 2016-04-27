@@ -4,7 +4,7 @@ angular.module('starter.controllers', [])
 
 .controller('AccountCtrl', function($scope, $ionicLoading, $ENV, $timeout, $filter, $http) {
 
-  $scope.host = $ENV.settings.API.host;
+  $scope.host = $ENV.settings.API.host; //TODO ruins dynamic reload
   $scope.port = $ENV.settings.API.port;
   $scope.vehicle = "BMW123";
   $scope.driver = "Karl Meerkatz";
@@ -101,9 +101,22 @@ angular.module('starter.controllers', [])
   }
 
   function post(type, data) {
-    $http.post('http://'+$scope.host+':'+$scope.port+"/api/" + type, data).then(function (successResult) {
+
+    // token
+    $http.post('http://'+$scope.host+':'+$scope.port+"/api/authenticate", $ENV.settings.CREDENTIALS).then(function (successResult) {
       console.log(successResult);
-      alert("OK");
+      var token = successResult.data.id_token;
+      $http.defaults.headers.common.Authorization = 'Bearer ' + token;
+
+      // actual request:
+      $http.post('http://'+$scope.host+':'+$scope.port+"/api/" + type, data).then(function (successResult) {
+        console.log(successResult);
+        alert("OK");
+      }, function (errResult) {
+        console.log(errResult);
+        alert("FAILED");
+      });
+
     }, function (errResult) {
       console.log(errResult);
       alert("FAILED");
