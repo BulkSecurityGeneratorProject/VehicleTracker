@@ -57,3 +57,9 @@ jhipster:
 
     simulator:
         enabled: false
+
+    kizy:
+        enabled: false
+        username: f84295c8f773d2b0031f192951474b42
+        password: 565
+

@@ -71,6 +71,10 @@
 
         var activeId;
         $scope.showOnMap = function(deviceId, fromTimeout) {
+            uiGmapIsReady.promise().then(function () {
+                vm.directionsDisplay.setMap(null);
+            });
+
             if (fromTimeout && deviceId != activeId) return;
             activeId = deviceId;
 
